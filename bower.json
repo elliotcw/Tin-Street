@@ -1,0 +1,16 @@
+{
+  "name": "TinStreet-client",
+  "private": true,
+  "dependencies": {
+    "requirejs": "~2.1.11",
+    "jquery": "~2.1.0",
+    "angular": "~1.2.14",
+    "lodash": "~2.4.1",
+    "foundation": "zurb/bower-foundation#~5.2.0",
+    "d3": "~3.4.3",
+    "requirejs-text": "~2.0.10"
+  },
+  "devDependencies": {
+    "fontawesome": "~4.0.3"
+  }
+}

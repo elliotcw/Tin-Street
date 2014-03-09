@@ -1,0 +1,48 @@
+<div class="depth row">    
+    <div ng-show="loading" class="loading"><i class="fa fa-spinner fa-spin"></i></div>
+    <div class="header small-12">
+        <div class="small-8 columns">
+            <input type="text" ng-model="instrumentCode" placeholder="Instrument Code">    
+        </div>
+        <div class="small-4 columns text-right">
+            <i class="fa fa-cog" ng-click="showSettings = !showSettings"></i>
+            <i class="fa fa-times" ng-click="close()"></i>
+        </div>
+    </div>
+    <div class="instrument-info small-12 columns settings" ng-show="showSettings">
+        <label>Full Depth
+            <input type="checkbox" ng-model="fullDepth">
+        </label>
+        <label>Highlight My Orders
+            <input type="checkbox" ng-model="highlightMyOrders">
+        </label>
+    </div>
+    <div ng-show="fullDepth">
+        <ul class="small-6 columns no-bullet text-right">bid
+            <li class="row" ng-repeat="bid in bids | orderBy:['-price', '-enteredTimestamp']" ng-class="{touch: $first, 'my-order': highlightMyOrders && bid.isMyOrder}">
+                <div class="small-6 columns text-left">{{bid.unfilled}}</div>
+                <div class="small-6 columns text-right">{{bid.price | number:2}}</div>
+            </li>
+        </ul>
+        <ul class="small-6 columns no-bullet">ask
+            <li class="row" ng-repeat="ask in asks | orderBy:['price', '-enteredTimestamp']" ng-class="{touch: $first, 'my-order': highlightMyOrders && ask.isMyOrder}">
+                <div class="small-6 columns text-left">{{ask.price | number:2}}</div>
+                <div class="small-6 columns text-right">{{ask.unfilled}}</div>
+            </li>
+        </ul>
+    </div>
+    <div ng-show="!fullDepth">
+        <ul class="small-6 columns no-bullet text-right">bid
+            <li class="row" ng-repeat="bid in groupedBids | orderBy:['-price', '-enteredTimestamp']" ng-class="{touch: $first, 'my-order': highlightMyOrders && bid.isMyOrder}">
+                <div class="small-6 columns text-left">{{bid.unfilled}}</div>
+                <div class="small-6 columns text-right">{{bid.price | number:2}}</div>
+            </li>
+        </ul>
+        <ul class="small-6 columns no-bullet">ask
+            <li class="row" ng-repeat="ask in groupedAsks | orderBy:['price', '-enteredTimestamp']" ng-class="{touch: $first, 'my-order': highlightMyOrders && ask.isMyOrder}">
+                <div class="small-6 columns text-left">{{ask.price | number:2}}</div>
+                <div class="small-6 columns text-right">{{ask.unfilled}}</div>
+            </li>
+        </ul>
+    </div>
+</div>
