@@ -1,0 +1,6 @@
+<ul class="no-bullet" ng-class="side">{{side}}
+    <li class="row" ng-repeat="order in orders" ng-class="{touch: $first, 'my-order': highlightMyOrders && order.isMyOrder}">
+        <div class="small-6 columns volume">{{order.unfilled}}</div>
+        <div class="small-6 columns price">{{order.price | number:2}}</div>
+    </li>
+</ul>

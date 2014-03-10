@@ -1,0 +1,28 @@
+<div class="depth row">    
+    <div ng-show="loading" class="loading"><i class="fa fa-spinner fa-spin"></i></div>
+    <div class="header small-12">
+        <div class="small-8 columns">
+            <input type="text" ng-model="instrumentCode" placeholder="Instrument Code">
+        </div>
+        <div class="small-4 columns text-right">
+            <i class="fa fa-cog" ng-click="showSettings = !showSettings"></i>
+            <i class="fa fa-times" ng-click="close()"></i>
+        </div>
+    </div>
+    <div class="instrument-info small-12 columns settings" ng-show="showSettings">
+        <label>Full Depth
+            <input type="checkbox" ng-model="fullDepth">
+        </label>
+        <label>Highlight My Orders
+            <input type="checkbox" ng-model="highlightMyOrders">
+        </label>
+    </div>
+    <div ng-show="fullDepth">
+        <depth class="small-6 columns" side="bid" orders="bids"></depth>
+        <depth class="small-6 columns" side="ask" orders="asks"></depth>
+    </div>
+    <div ng-show="!fullDepth">
+        <depth class="small-6 columns" side="bid" orders="groupedBids"></depth>
+        <depth class="small-6 columns" side="ask" orders="groupedAsks"></depth>
+    </div>
+</div>
